@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Image files
+.cif
+
 # Object files
 *.o
 *.ko
