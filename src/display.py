@@ -2,8 +2,8 @@ from tkinter import Tk, Canvas, PhotoImage, mainloop
 from sys import argv
 from binascii import hexlify
 
-debug = False
-measure_time = True
+debug = False #print debug information?
+measure_time = True #test pixel peformance?
 
 if len(argv) != 2:
     raise ValueError('No filename provided')
