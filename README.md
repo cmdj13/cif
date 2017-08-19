@@ -7,7 +7,7 @@ Custom Image Format specification and reference implementation
 
 Usage
 -----
-Customize and run __*create_sample.py*__, which will create a .cif file you can display using __*display.py*__ .
+Customize and run __*create_sample.py*__, which will create a .cif file you can display using __*display.py*__.
 
 Future of this project
 ----------------------
