@@ -1,6 +1,8 @@
 from binascii import hexlify
 from lz4framed import compress
 
+debug = True #print debug information?
+
 filename = 'sample.cif'
 version = b'\x01'
 width = b'\x02\x00'
@@ -12,12 +14,16 @@ colour_two = b'\x00\xff\x00'
 square_size = 4 #the size of a square of pixels
 
 with open(filename, 'wb') as f:
+    if debug:
+        print('Writing header...')
     f.write(version)
     f.write(width)
     f.write(height)
     f.write(comment_length)
     f.write(comment)
     uncompressed = b''
+    if debug:
+        print('Building uncompressed image data string...')
     for y in range(int(hexlify(height), 16)): #this will result in a chess-board-like pattern of colout one and two
         for x in range(int(hexlify(width), 16)):
             if y % (square_size * 2) < square_size:
@@ -30,5 +36,11 @@ with open(filename, 'wb') as f:
                     uncompressed += colour_two
                 else:
                     uncompressed += colour_one
+    if debug:
+        print('Compressing image data string...')
     compressed = compress(uncompressed)
+    if debug:
+        print('Writing compressed image data...')
     f.write(compressed)
+    if debug:
+        print('Finished.')

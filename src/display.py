@@ -7,10 +7,13 @@ from lz4framed import decompress
 debug = True #print debug information?
 measure_time = True #test pixel peformance?
 
+filename = None
 if len(argv) != 2:
-    raise ValueError('No filename provided')
-
-f = open(argv[1], 'rb')
+    print('No filename (or too many arguments) provided, using default file name (sample.cif).')
+    filename = 'sample.cif'
+else:
+    filename = argv[1]
+f = open(filename, 'rb')
 hexdata_stream = StringIO(hexlify(f.read()).decode())
 f.close()
 VERSION = int(hexdata_stream.read(2), 16)
@@ -24,7 +27,7 @@ if debug:
      print('.cif spec v', VERSION, '\nwidth: ', WIDTH, '\nheight: ', HEIGHT, '\ncomment: "', COMMENT, '"', sep = '')
 
 window = Tk()
-window.title(argv[1])
+window.title(filename)
 canvas = Canvas(window, width = WIDTH, height = HEIGHT, bg = '#000000')
 canvas.pack()
 img = PhotoImage(width = WIDTH, height = HEIGHT)
