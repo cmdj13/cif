@@ -5,6 +5,10 @@ Custom Image Format specification and reference implementation
 --------------------------------------------------------------
 *Note:* This is in a very early stage of development and not actually meant to be used productively but to learn a thing or two about (custom) file formats and compression.
 
+Dependencies
+------------
+The reference implementation uses [py-lz4framed](https://github.com/Iotic-Labs/py-lz4framed).
+
 Usage
 -----
 Customize and run __*create_sample.py*__, which will create a .cif file you can display using __*display.py*__.
