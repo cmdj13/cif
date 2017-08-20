@@ -1,8 +1,8 @@
 # Prerequisites
 *.d
 
-# Image files
-.cif
+#Custom Image Files
+*.cif
 
 # Object files
 *.o
