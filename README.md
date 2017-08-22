@@ -15,4 +15,4 @@ Customize and run __*create_sample.py*__, which will create a .cif file you can 
 
 Future of this project
 ----------------------
-As said in the specification, an alpha channel may be implemented. Also, the reference implementation does not check the image width, height or comment size, which never is a good idea.
+As said in the specification, an alpha channel may be implemented. Also, the reference implementation does not check the image width, height or comment size, which never is a good idea and the generated sample image could probably be improved.
