@@ -5,7 +5,11 @@ from io import StringIO
 from lz4framed import decompress
 
 debug = True #print debug information?
-measure_time = True #test pixel peformance?
+measure_time = False #test pixel peformance?
+
+def debug(string = '', end = '\n'):
+    if debug:
+        print(string, end = end)
 
 filename = None
 if len(argv) != 2:
@@ -20,11 +24,9 @@ VERSION = int(hexdata_stream.read(2), 16)
 WIDTH = int(hexdata_stream.read(4), 16)
 HEIGHT = int(hexdata_stream.read(4), 16)
 COMMENT_LENGTH = int(hexdata_stream.read(2), 16)
-if debug:
-    print('comment length:', COMMENT_LENGTH)
+debug('Comment length: '+ str(COMMENT_LENGTH))
 COMMENT = unhexlify(hexdata_stream.read(COMMENT_LENGTH * 2)).decode()
-if debug:
-     print('.cif spec v', VERSION, '\nwidth: ', WIDTH, '\nheight: ', HEIGHT, '\ncomment: "', COMMENT, '"', sep = '')
+debug('.cif spec v' + str(VERSION) + '\nWidth: ' + str(WIDTH) + '\nHeight: ' + str(HEIGHT) + '\nComment: "' + str(COMMENT) + '"')
 
 window = Tk()
 window.title(filename)
@@ -38,15 +40,15 @@ if measure_time:
     perf_counter()
 compressed = hexdata_stream.read().encode()
 hexdata_stream_decompressed = StringIO(hexlify(decompress(unhexlify(compressed))).decode())
-
 for y in range(HEIGHT):
     for x in range(WIDTH):
         colour = '#' + hexdata_stream_decompressed.read(6)
         img.put(colour, (x, y))
-    if debug and y % 5 == 0:
-        print('read and put pixel row', y, '(' + str(int(y / HEIGHT * 100)) + '%)' , end = '\r')
+    if y % 5 == 0:
+        debug('Read and put pixel row ' + str(y) + ' (' + str(int(y / HEIGHT * 100)) + '%)', end = '\r')
 
 if measure_time:
     print('Time it took to decompress, read and put pixel values:', round(perf_counter(), 2))
-
+else:
+    debug() #make sure there is no debug message about pixel rows left
 mainloop()
