@@ -11,7 +11,7 @@ The reference implementation uses tkinter and [py-lz4framed](https://github.com/
 
 Usage
 -----
-Customize and run __*create_sample.py*__, which will create a .cif file you can display using __*display.py*__.
+Customize (optional) and run __*create_sample.py*__, which will create a .cif file you can display using __*display.py*__.
 
 Future of this project
 ----------------------
