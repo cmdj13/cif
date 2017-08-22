@@ -3,6 +3,7 @@ from sys import argv
 from binascii import hexlify, unhexlify
 from io import StringIO
 from lz4framed import decompress
+from os import name as os_name
 
 debug = True #print debug information?
 measure_time = False #test pixel peformance?
@@ -33,7 +34,8 @@ window.title(filename)
 canvas = Canvas(window, width = WIDTH, height = HEIGHT, bg = '#000000')
 canvas.pack()
 img = PhotoImage(width = WIDTH, height = HEIGHT)
-canvas.create_image((WIDTH / 2 + 1, HEIGHT / 2 + 1), image = img, state = 'normal') #don't ask about the / 2 + 1, I have no idea but it seems to work
+to_add = 2 if os_name == 'nt' else 1 #seems to work, don't ask
+canvas.create_image((WIDTH / 2 + to_add, HEIGHT / 2 + to_add), image = img, state = 'normal')
 
 if measure_time:
     from time import perf_counter
