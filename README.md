@@ -7,7 +7,7 @@ Custom Image Format specification and reference implementation
 
 Dependencies
 ------------
-The reference implementation uses [py-lz4framed](https://github.com/Iotic-Labs/py-lz4framed).
+The reference implementation uses tkinter and [py-lz4framed](https://github.com/Iotic-Labs/py-lz4framed).
 
 Usage
 -----
