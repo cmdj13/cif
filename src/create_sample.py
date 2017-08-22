@@ -27,7 +27,7 @@ with open(filename, 'wb') as f:
     uncompressed = {0: b'', 1: b'', 2: b'', 3: b'', 4: b'', 5: b'', 6: b'', 7: b'', 8: b'', 9: b''}
     debug('Building uncompressed image data string...')
     n = 0
-    for y in range(int(hexlify(height), 16)): #this will result in a chess-board-like pattern of colout one and two
+    for y in range(int(hexlify(height), 16)): #this will result in a chess-board-like pattern of colour one and two
         for x in range(int(hexlify(width), 16)):
             if y % (square_size * 2) < square_size:
                 n = int(y / int(hexlify(height), 16) * 10)
